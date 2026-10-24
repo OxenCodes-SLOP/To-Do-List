@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<Head>
+    <title>to do list</title>
+
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+</Head>
+<body>
+    <h1>To Do List</h1>
+    <button id="addtask">add task</button>
+    <div id="tasklist">
+    </div>
+<style>
+    body {
+        max-width: 24vw;
+        max-height: 48vh;
+
+        font-family: 'patrick hand', cursive;
+        --row: 40px;
+  background-color: #ECE63D;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent calc(var(--row) - 1px),
+    black calc(var(--row) - 1px),
+    black var(--row)
+  );
+    }
+
+    input, button {
+        font-family: 'patrick hand', cursive;
+        font-size: 1.8rem;
+    font-weight: 400;
+
+     background: transparent;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  padding: 0;
+  margin: 0;
+  appearance: none;
+    }
+
+    h1, .task, #addTask {
+  height: var(--row);
+  line-height: var(--row);
+  margin: 0;
+}
+
+#addTask {
+  display: block;
+  padding: 0;
+}
+
+.task input,
+.task .delete {
+  height: 100%;
+  margin: 0;
+}
+</style>
+<script>
+    let count = 0;
+    const addtaskbutton = document.getElementById("addtask");
+
+    addtaskbutton.addEventListener("click", function() {
+        const newtask = document.createElement("input");
+        const deletebutton = document.createElement("button");
+        deletebutton.textContent = "X";
+        deletebutton.id = "delete" + (count + 1);
+        newtask.id = "task" + (count + 1);
+        
+        deletebutton.addEventListener("click", function() {
+            newtask.remove();
+            deletebutton.remove();
+        });
+        
+        document.getElementById("tasklist").appendChild(newtask);
+        document.getElementById("tasklist").appendChild(deletebutton);
+        count++;
+    });
+    </script>
